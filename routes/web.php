@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $provinces = \App\Models\Province::all();
+    return view('welcome', compact('provinces'));
 });
