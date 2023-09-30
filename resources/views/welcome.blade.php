@@ -48,10 +48,10 @@
 <nav class="site-nav">
     <div class="container">
         <div class="site-navigation">
-            <a href="index.html" class="logo m-0">Tour_21 <span class="text-primary">.</span></a>
+            <a href="{{route('home')}}" class="logo m-0">Tour_21 <span class="text-primary">.</span></a>
 
             <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
-                <li class="active"><a href="index.html">Trang chủ</a></li>
+                <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
                 <li class="has-children">
                     <a href="#">Địa điểm</a>
                     <ul class="dropdown">
@@ -61,7 +61,7 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="services.html">Khách sạn</a></li>
+                <li><a href="{{route('hotel')}}">Khách sạn</a></li>
                 <li><a href="about.html">Bài viết</a></li>
                 <li><a href="about.html">Hỗ trợ</a></li>
                 <li><a href="contact.html">Đăng nhập/ Đăng ký </a></li>
