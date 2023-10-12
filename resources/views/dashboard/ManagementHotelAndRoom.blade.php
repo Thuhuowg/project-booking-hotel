@@ -28,18 +28,8 @@
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Chọn tỉnh thành</label>
-                        <select class="form-control select2bs4" style="width: 100%;">
-                            @foreach($provinces as $province)
-                            <option selected="selected">{{$province->name}}</option>
-{{--                            <option>Alaska</option>--}}
-{{--                            <option>California</option>--}}
-{{--                            <option>Delaware</option>--}}
-{{--                            <option>Tennessee</option>--}}
-{{--                            <option>Texas</option>--}}
-{{--                            <option>Washington</option>--}}
-                                @endforeach
-                        </select>
+                        <label>Khu vực</label>
+                        <div>Hà nội</div>
 {{--                        <button type="button" class="btn btn-info mt-3">--}}
 {{--                            <i class="fas fa-plus"></i>--}}
 {{--                        </button>--}}
@@ -49,17 +39,8 @@
                 <!-- /.col -->
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label>Chọn khách sạn</label>
-                        <select class="select2bs4" multiple="multiple" data-placeholder="Select a State"
-                                style="width: 100%;">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
+                        <label>Khách sạn</label>
+                        <div>HANZ Hanoi de Maison Grand</div>
                     </div>
                     <!-- /.form-group -->
 
@@ -74,21 +55,22 @@
                     <div class="form-group">
                         <label>Chọn loại phòng</label>
                         <select class="form-control select2bs4" style="width: 100%;">
-                            @foreach($provinces as $province)
-                                <option selected="selected">{{$province->name}}</option>
+                                <option selected="selected"></option>
                                 {{--                            <option>Alaska</option>--}}
                                 {{--                            <option>California</option>--}}
                                 {{--                            <option>Delaware</option>--}}
                                 {{--                            <option>Tennessee</option>--}}
                                 {{--                            <option>Texas</option>--}}
                                 {{--                            <option>Washington</option>--}}
-                            @endforeach
                         </select>
                         {{--                        <button type="button" class="btn btn-info mt-3">--}}
                         {{--                            <i class="fas fa-plus"></i>--}}
                         {{--                        </button>--}}
                     </div>
-                    <!-- /.form-group -->
+                    <!-- /.form-group --><div class="form-group ms-3">
+                        <div class="small" >Thêm loại phòng</div>
+                        <input type="text" class="form-control" placeholder="Nhập loại phòng">
+                    </div>
                 </div>
 
             </div>

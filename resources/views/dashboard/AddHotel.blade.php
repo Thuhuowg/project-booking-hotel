@@ -1,6 +1,6 @@
 @extends('dashboard.fe')
 @section('title')
-   Thêm thành phố
+   Thêm ks
 @endsection
 @section('content')
 
