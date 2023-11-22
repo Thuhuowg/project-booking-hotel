@@ -45,6 +45,6 @@ class AuthenticatedSessionController extends Controller
 
 
 
-        return redirect('/');
+        return redirect('loginb');
     }
 }

@@ -51,13 +51,32 @@
                     <ul class="dropdown">
                         <li><a href="elements.html">Elements</a></li>
                         @foreach($provinces as $province)
-                            <li><a href="#">{{$province->name}}</a></li>
+                            <li><a href="{{route('province', ['id'=>$province->id])}}">{{$province->name}}</a></li>
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{route('hotel')}}">Khách sạn</a></li>
+                <li><a href="">Khách sạn</a></li>
                 <li><a href="about.html">Bài viết</a></li>
                 <li><a href="about.html">Hỗ trợ</a></li>
+                <li>@if (Route::has('login'))
+                        @auth
+                            <span class="has-children" >
+                            <a href="#" class=" text-sm  text-white underline">{{\Illuminate\Support\Facades\Auth::user()->full_name}}</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Đơn đặt phòng</a></li>
+                            <li><a href="{{route('logout')}}">Đăng xuất</a></li>
+                        </ul></span>
+                        @else
+                            @if (Route::has('register'))
+                                <a href="{{ route('login') }}" class="text-sm text-white underline"> Đăng Nhập </a>
+                            @endif
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="ml-4 text-sm text-white underline">Đăng kí</a>
+            @endif
+            @endauth
+        </div>
+        @endif
+        </li>
                 <li><a href="contact.html">Đăng nhập/ Đăng ký </a></li>
             </ul>
 

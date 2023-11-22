@@ -1,3 +1,4 @@
+
 @extends('dashboard.fe')
 @section('title','Thông tin tài khoản')
 @section('content')
@@ -10,7 +11,6 @@
 
                 <div class="card-body table-responsive p-0">
                     <table class="table table-hover text-nowrap">
-
                         <tr>
                             <th>Mã NV</th>
                             <td>BP-21</td>
@@ -19,27 +19,27 @@
 
                         <tr>
                             <th>Họ và tên</th>
-                            <td>Nguyễn T Thu Hương</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->full_name}}</td>
                         </tr>
                         <tr>
                             <th>Ngày sinh</th>
-                            <td>14/04/2003</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->birthday}}</td>
                         </tr>
                         <tr>
                             <th>Giới tính </th>
-                            <td>Nữ</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->gender}}</td>
                         </tr>
                         <tr>
                             <th>Địa chỉ </th>
-                            <td>Thanh trì, Hà nội</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->address}}</td>
                         </tr>
                         <tr>
                             <th>SĐT</th>
-                            <td>03345482931</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->phone}}</td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td>huogthu552@gmail.com</td>
+                            <td>{{\Illuminate\Support\Facades\Auth::user()->email}}</td>
                         </tr>
 
                     </table>

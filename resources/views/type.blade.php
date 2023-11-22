@@ -60,24 +60,25 @@
                     <button type="submit" class="btn btn-primary btn-block" style="margin: 0px auto; width: 300px; height: 70px">Đặt phòng ngay</button>
                 </a>
                 <h3>Đánh giá:
-                    <span class="text-success">4.5/5 </span><span><i class="icon-star"></i></span>
+                    <span class="text-success">{{$hotel->star_counter}}/5 </span><span><i class="icon-star"></i></span>
                 </h3>
                 <h3>Giá phòng: </h3>
+                @foreach($prices as $price)
                 <div class="row mt-5">
                     <div class="col-sm-6">
                         <h4> Giá ban đầu </h4>
                         <h5 class="text-primary">
-                           1.489.000 VNĐ
+                            {{ number_format($price->default_price)}} VNĐ
                         </h5>
 
                     </div>
                     <div class="col-sm-6">
                         <h4>Giá hot trong ngày </h4>
                         <h5 class="text-danger">
-                           791.000 VNĐ
+                            {{number_format($price->discount_price)}} VNĐ
                         </h5>
                     </div>
-                </div>
+                </div>@endforeach
                 <div class="justify-content-center"> <h3 >Mô tả chi tiết</h3></div>
                 <p>
                     <h4>1 giường đôi lớn</h4>

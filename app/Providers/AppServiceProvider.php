@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Province;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        view()->composer('*', function ($view){
+            $view ->with([
+                'provinces'=> Province::all(),
+                'admin'=>User::all()
+            ]);
+        });
     }
 }

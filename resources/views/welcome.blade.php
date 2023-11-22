@@ -106,7 +106,7 @@
 {{--            </div>--}}
 @foreach($provinces as $province)
             <div class="item mt-5">
-                <a class="media-thumb" href="{{$province->image}}" data-fancybox="gallery">
+                <a class="media-thumb" href="{{route('province', ['id'=>$province->id])}}" >
                     <div class="media-text">
                         <h3>{{$province->name}}</h3>
 {{--                        <span class="location">Switzerland</span>--}}

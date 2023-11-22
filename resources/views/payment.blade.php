@@ -7,40 +7,49 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Chọn tỉnh thành')" />
+
             <select name="lang" id="lang-select">
                 <option value="">Chọn tỉnh thành</option>
-                <option value="csharp"></option>
-                <option value="cpp">C++</option>
-                <option value="php">PHP</option>
-                <option value="ruby">Ruby</option>
-                <option value="js">Javascript</option>
-                <option value="dart">Dart</option>
+                @foreach($provinces as $province)
+                <option value="{{$province->id}}">{{$province->name}}</option>
+                @endforeach
             </select>
+
         </div>
         <div>
             <x-input-label for="email" :value="__('Chọn Khách sạn')" />
+
             <select name="lang" id="lang-select">
                 <option value="">Chọn khách sạn</option>
-                <option value="csharp">C#</option>
-                <option value="cpp">C++</option>
-                <option value="php">PHP</option>
-                <option value="ruby">Ruby</option>
-                <option value="js">Javascript</option>
-                <option value="dart">Dart</option>
+                @foreach($provinces as $province)
+                @if($province->hotels)
+                    @foreach($province->hotels as $hotel)
+                <option value="{{$hotel->id}}">{{$hotel->name}}</option>
+                        @endforeach
+                @endif
+                @endforeach
             </select>
+
         </div>
         <div>
             <x-input-label for="email" :value="__('Chọn Loại phong')" />
+
             <select name="lang" id="lang-select">
                 <option value="">Chọn loại phòng</option>
-                <option value="csharp">C#</option>
-                <option value="cpp">C++</option>
-                <option value="php">PHP</option>
-                <option value="ruby">Ruby</option>
-                <option value="js">Javascript</option>
-                <option value="dart">Dart</option>
+                @foreach($provinces as $province)
+                    @if($province->hotels)
+                        @foreach($province->hotels as $hotel)
+                            @if($hotel->types)
+                                @foreach($hotel->types as $type)
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                                @endforeach
+                            @endif
+                        @endforeach
+                    @endif
+                @endforeach
             </select>
         </div>
+
         <div>
             <x-input-label :value="__('Số lượng')" />
             <x-text-input  class="block mt-1 w-full" type="text" name="email"  />
@@ -66,13 +75,15 @@
         <!-- Remember Me -->
 
         <div class="flex items-center justify-end mt-4">
-
-            <x-danger-button class="ml-3">
+<a href="#">
+            <a class="ml-3 btn-outline-danger" href="{{route('home')}}">
                 {{ __('Hủy') }}
-            </x-danger-button>
-            <x-primary-button class="ml-3">
+            </a></a>
+            <a href="">
+            <x-primary-button class="ml-3" type="submit">
                 {{ __('Đặt phòng') }}
-            </x-primary-button>
+            </x-primary-button></a>
+
         </div>
     </form>
 </x-guest-layout>

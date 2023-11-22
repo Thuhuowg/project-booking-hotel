@@ -3,7 +3,7 @@
 @section('content')
     @foreach($types as $type)
     <div class="untree_co-section" style="padding: 20px; background-color: #f8f9fa">
-        <a href="{{route('type')}}">
+        <a href="{{route('type',['id'=>$type->id])}}">
             <div class="container">
                 <div class="row hero p-5" style="border: 5px solid #ffff; border-radius: 20px;background-color: #f8f9fa;box-shadow: 0 30px 40px rgba(0,0,0,.1)">
                     <div class="col-sm-4 " >

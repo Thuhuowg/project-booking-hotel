@@ -18,7 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'full_name',
+        'gender',
+        'address',
+        'phone',
+        'birthday',
         'email',
         'password',
     ];
@@ -42,4 +47,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
+    }
 }

@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,38 +17,30 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//Route::resource('provinces',\App\Http\Controllers\ProvinceController::class);
+//Route::resource('hotel',\App\Http\Controllers\ProvinceController::class);
+Route::get('/province/{id}',[ProvinceController::class, 'show'])->name('province');
+Route::get('/hotel/{id}',[HotelController::class,'show'])->name('hotel');
+Route::get('/type-room/{id}',[TypeController::class,'show'])->name('type');
+//Route::get('/admin/{id}',[AdminController::class,'show'])->name('profile');
+Route::prefix('admin.')->group(function () {
+    Route::get('/{id}',[AdminController::class,'show'])->name('profile');
+});
 Route::get('/', function () {
-    $provinces= \App\Models\Province::all();
-    return view('welcome', compact('provinces'));
+    return view('welcome');
 })->name('home');
-Route::get('/hotel', function (){
-    $provinces = \App\Models\Province::all();
-    $hotels=\App\Models\Hotel::all();
-    return view('hotel', compact('provinces','hotels'));
-})->name('hotel');
-Route::get('/hotel/HANZHanoideMaisonGrand',function (){
-    $provinces = \App\Models\Province::all();
-
-    $types=\App\Models\Type::all();
-    return view('typesList', compact('provinces','types'));
-})->name('list');
-Route::get('/hotel/HANZHanoideMaisonGrand/PhongDeluxGiuongDoi',function (){
-    $provinces = \App\Models\Province::all();
-    $hotels=\App\Models\Hotel::all();
-    $types=\App\Models\Type::all();
-    return view('type', compact('provinces','hotels','types'));
-})->name('type');
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard/management',function(){
-    $provinces = \App\Models\Province::all();
-    return view('dashboard.ManagementHotelAndRoom',compact('provinces'));
-})->name('ManagementHotel');
+    $types= \App\Models\Type::all();
+    $hotel = \App\Models\Hotel::select('id','name')->get();
+    $province=\App\Models\Province::all();
+    return view('dashboard.ManagementHotelAndRoom',compact('types','hotel','province'));
+})->name('ManagementRoom');
 Route::get('/dashboard/infor-user',function(){
-    $provinces = \App\Models\Province::all();
-    return view('dashboard.infoUser',compact('provinces'));
+    return view('dashboard.infoUser');
 })->name('ManagementHotel');
 Route::get('/booking', function () {
     return view('payment');
@@ -54,5 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';
+require __DIR__.'/authUser.php';
+require __DIR__.'/admin.php';

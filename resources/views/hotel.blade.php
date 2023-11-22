@@ -1,19 +1,11 @@
 
-<!-- /*
-* Template Name: Tour
-* Template Author: Untree.co
-* Tempalte URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 @extends('layoutClient.feHome')
 @section('title','Khách sạn')
 @section('content')
 
-
-@foreach($hotels as $hotel )
-
+    @foreach($hotels as $hotel)
 <div class="untree_co-section" style="padding: 20px">
-    <a href="{{route('list')}}">
+    <a href="{{route('hotel',['id'=>$hotel->id])}}">
     <div class="container">
         <div class="row hero text-white p-5 " style="box-shadow: 0 30px 40px rgba(0,0,0,.1);border-radius: 10px">
           <div class="col-sm-4 " >
@@ -35,6 +27,6 @@
     </div>
     </a>
 </div>
+    @endforeach
 
-@endforeach
 @endsection

@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
 
-    <link rel="stylesheet" href="{{asset('css/adminlte.min.css?v=3.2.0')}}">
+    <link rel="stylesheet" href="{{asset('css/adminlte.css?v=3.2.0')}}">
 
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 
@@ -107,9 +107,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
+                <a class="nav-link" href="#"
                    role="button">
-                    <i class="fas fa-th-large"></i>
+                    <i class="fas fa-th-large">
+                        @if (Route::has('loginb'))
+                            @auth
+                                <a href="{{ url('/dashboard') }}" class=" text-sm  text-white underline">Tài Khoản</a>
+                            @else
+                                <a href="{{ route('loginb') }}" class="text-sm text-white underline"> Đăng Nhập </a>
+
+                                @if (Route::has('registerb'))
+                                    <a href="{{ route('registerb') }}" class="ml-4 text-sm text-white underline">Đăng kí</a>
+                                @endif
+                            @endauth
+                        @endif
+                    </i>
                 </a>
             </li>
         </ul>
@@ -130,7 +142,7 @@
                     <img src="https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/anh-avatar-trang-nen-ombre.jpg?ssl%5Cu003d1" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="{{route('hotel')}}" class="d-block">Nguyễn Thị Thu Hương</a>
+                    <div href="" class="d-block text-white ">{{\Illuminate\Support\Facades\Auth::user()->full_name}}</div>
                 </div>
             </div>
 
@@ -406,8 +418,9 @@
                     {{--                        </ul>--}}
                     {{--                    </li>--}}
                     {{--                    <li class="nav-header">EXAMPLES</li>--}}
+
                     <li class="nav-item">
-                        <a href="{{route('hotel')}}" class="nav-link">
+                        <a href="{{route('ManagementHotel')}}" class="nav-link">
                             <i class="far fa-user me-5 "></i>
                             <p>
                                 Thông tin tài khoản
@@ -425,11 +438,15 @@
                         <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="{{route('room_list')}}" class="nav-link">
                                         <i class="fas fa-plus-square"></i>
-                                        <p>Thêm khách sạn</p>
+                                        <p>Danh sách phòng</p>
                                     </a>
-                                    <a href="{{route('hotel')}}" class="nav-link">
+{{--                                    <a href="" class="nav-link">--}}
+{{--                                        <i class="fas fa-plus-square"></i>--}}
+{{--                                        <p>Thêm khách sạn</p>--}}
+{{--                                    </a>--}}
+                                    <a href="{{route('ManagementRoom')}}" class="nav-link">
                                         <i class="fas fa-plus-square"></i>
                                         <p>Thêm phòng</p>
                                     </a>
@@ -491,10 +508,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logoutb') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
+                            <x-dropdown-link :href="route('logoutb')"
                                              onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> {{ __('Đăng xuất') }}
@@ -2089,5 +2106,6 @@
 <script src="{{asset('js/demo.js')}}"></script>
 
 <script src="{{asset('js/pages/dashboard.js')}}"></script>
+@yield('js')
 </body>
 </html>
